@@ -4,4 +4,6 @@ class FlutterLocalNotificationsService {
   // create object from flutter local notification plugin
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  void initialize() {}
 }
