@@ -5,5 +5,9 @@ class FlutterLocalNotificationsService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  void initialize() {}
+  Future<void> initialize() async {
+    InitializationSettings initializationSettings = InitializationSettings();
+    bool? initaliztionResult = await flutterLocalNotificationsPlugin
+        .initialize(initializationSettings);
+  }
 }
