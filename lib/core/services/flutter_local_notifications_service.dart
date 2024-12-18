@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:uuid/uuid.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_timezone/flutter_timezone.dart' as tz;
 
 class FlutterLocalNotificationsService {
   // create object from flutter local notification plugin
@@ -87,7 +87,8 @@ class FlutterLocalNotificationsService {
       ),
       iOS: DarwinNotificationDetails(),
     );
-    tz.setLocalLocation(tz.getLocation('Africa/Cairo'));
+    String realLocation = await tz.FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(realLocation));
     await flutterLocalNotificationsPlugin.zonedSchedule(
         notificationId.hashCode,
         'Schedule Notification Title',
