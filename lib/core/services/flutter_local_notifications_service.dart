@@ -7,7 +7,10 @@ class FlutterLocalNotificationsService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
-    InitializationSettings initializationSettings = InitializationSettings();
+    InitializationSettings initializationSettings = InitializationSettings(
+      android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+      iOS: DarwinInitializationSettings(),
+    );
     bool? initaliztionResult = await flutterLocalNotificationsPlugin
         .initialize(initializationSettings);
     if (initaliztionResult != null && initaliztionResult == true) {
