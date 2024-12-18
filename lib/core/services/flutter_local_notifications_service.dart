@@ -44,4 +44,25 @@ class FlutterLocalNotificationsService {
       notificationDetails,
     );
   }
+
+  static Future<void> showRepeatedNotification() async {
+    var notificationId = Uuid().v4();
+    NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'Repeated Notification Channel Id',
+        'Repeated Notification Channel Id',
+        priority: Priority.high,
+        importance: Importance.max,
+      ),
+      iOS: DarwinNotificationDetails(),
+    );
+    await flutterLocalNotificationsPlugin.periodicallyShow(
+      notificationId.hashCode,
+      'Repeated Notification Title',
+      'Repeated Notification Body',
+      RepeatInterval.everyMinute,
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exact,
+    );
+  }
 }
