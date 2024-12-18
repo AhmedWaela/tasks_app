@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:tasks_app/features/tasks/presentation/views/add_reminder_view.dart';
+import 'package:tasks_app/main.dart';
 import 'package:uuid/uuid.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -30,6 +32,7 @@ class FlutterLocalNotificationsService {
 
   static void onDid(NotificationResponse? details) {
     debugPrint('Notification clicked: ${details?.payload}');
+    navigatorKey.currentState!.pushNamed(AddReminderView.route);
   }
 
   static Future<void> showBasicNotification() async {
