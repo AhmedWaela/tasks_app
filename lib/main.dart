@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/core/services/work_manager_services.dart';
-import 'package:workmanager/workmanager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

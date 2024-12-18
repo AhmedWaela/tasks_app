@@ -86,7 +86,6 @@ class FlutterLocalNotificationsService {
 
   static Future<void> showScheduleNotification(
       int id, String title, String description, DateTime scheduledTime) async {
-    var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'Schedule Notification Channel Id',
