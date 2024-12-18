@@ -6,23 +6,32 @@ class ReminderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 70),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.green,
-          child: Center(
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 40,
-            ),
+    return const Scaffold(
+      floatingActionButton: ReminderFloatingActionButton(),
+      backgroundColor: Color(0xffF6FFF9),
+      body: ReminderViewBody(),
+    );
+  }
+}
+
+class ReminderFloatingActionButton extends StatelessWidget {
+  const ReminderFloatingActionButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 70),
+      child: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.green,
+        child: Center(
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 40,
           ),
         ),
       ),
-      backgroundColor: Color(0xffF6FFF9),
-      body: ReminderViewBody(),
     );
   }
 }
