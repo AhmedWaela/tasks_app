@@ -1,8 +1,12 @@
 import 'package:workmanager/workmanager.dart';
 
 class WorkManagerServices {
-  Future<void> initialize() async {
+  static Future<void> initialize() async {
     await Workmanager().initialize(callbackDispatcher);
+  }
+
+  static Future<void> registerMyTask() async {
+    await Workmanager().registerOneOffTask('id1', 'task1');
   }
 }
 
