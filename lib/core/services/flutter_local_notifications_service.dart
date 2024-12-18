@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:uuid/uuid.dart';
 
 class FlutterLocalNotificationsService {
   // create object from flutter local notification plugin
@@ -26,6 +27,7 @@ class FlutterLocalNotificationsService {
   static void onDid(details) {}
 
   static Future<void> showBasicNotification() async {
+    var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'Basic Notification Channel Id',
@@ -36,7 +38,7 @@ class FlutterLocalNotificationsService {
       iOS: DarwinNotificationDetails(),
     );
     await flutterLocalNotificationsPlugin.show(
-      0,
+      notificationId.hashCode,
       'Basic Notification Title',
       'Basic Notification Body',
       notificationDetails,
