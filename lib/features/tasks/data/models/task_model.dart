@@ -24,4 +24,14 @@ class TaskModel {
       'timeOfDay': timeOfDay
     };
   }
+
+  factory TaskModel.fromJson(Map<String, dynamic> json) {
+    return TaskModel(
+      taskId: json['taskId'],
+      title: json['title'],
+      dateTime: json['dateTime'],
+      timeOfDay: json['timeOfDay'],
+      description: json['description'],
+    );
+  }
 }
