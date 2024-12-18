@@ -65,4 +65,6 @@ class FlutterLocalNotificationsService {
       androidScheduleMode: AndroidScheduleMode.exact,
     );
   }
+
+  static Future<void> cancelNotification() async {}
 }
