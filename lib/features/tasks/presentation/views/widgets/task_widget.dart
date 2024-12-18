@@ -7,7 +7,7 @@ class TaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         width: MediaQuery.sizeOf(context).width,
