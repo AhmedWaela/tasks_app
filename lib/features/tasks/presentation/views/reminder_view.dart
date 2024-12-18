@@ -6,7 +6,21 @@ class ReminderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 70),
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.green,
+          child: Center(
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 40,
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Color(0xffF6FFF9),
       body: ReminderViewBody(),
     );
