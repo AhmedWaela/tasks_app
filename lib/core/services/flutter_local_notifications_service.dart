@@ -87,6 +87,7 @@ class FlutterLocalNotificationsService {
       ),
       iOS: DarwinNotificationDetails(),
     );
+    tz.setLocalLocation(tz.getLocation('Africa/Cairo'));
     await flutterLocalNotificationsPlugin.zonedSchedule(
         notificationId.hashCode,
         'Schedule Notification Title',
