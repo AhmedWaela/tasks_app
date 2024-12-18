@@ -18,7 +18,7 @@ class WorkManagerServices {
       '${task.taskId}',
       task.title,
       inputData: task.toMap(),
-      initialDelay: task.dateTime.difference(DateTime.now()),
+      // initialDelay: task.dateTime.difference(DateTime.now()),
     );
   }
 }

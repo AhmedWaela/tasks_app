@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart' hide TimePickerDialog;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasks_app/core/services/work_manager_services.dart';
+import 'package:tasks_app/features/tasks/data/models/task_model.dart';
 import 'package:tasks_app/features/tasks/presentation/views/widgets/custom_text_field.dart';
 import 'package:tasks_app/features/tasks/presentation/views/widgets/custom_time_picker_dialog.dart';
+import 'package:uuid/uuid.dart';
 
 class AddReminderViewBody extends StatefulWidget {
   const AddReminderViewBody({super.key});
@@ -11,8 +17,16 @@ class AddReminderViewBody extends StatefulWidget {
 }
 
 class _AddReminderViewBodyState extends State<AddReminderViewBody> {
-  TimeOfDay timeOfDay = TimeOfDay.now();
-  DateTime? dateTime = DateTime.now();
+  DateTime dateTime = DateTime.now();
+  TimeOfDay? timeOfDay;
+  var title = TextEditingController();
+  var description = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    timeOfDay = TimeOfDay.fromDateTime(dateTime);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,11 +40,11 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                 height: MediaQuery.sizeOf(context).height * 0.01,
               ),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: title,
                 label: 'Title',
               ),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: description,
                 label: 'Description',
               ),
               Container(
@@ -46,7 +60,7 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                       mainAxisAlignment:
                           MainAxisAlignment.center, // Align vertically
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Enter Date',
                           style: TextStyle(
@@ -56,7 +70,7 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                         ),
                         SizedBox(height: 4), // Adds spacing between lines
                         Text(
-                          'yy/mm',
+                          '$dateTime',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -68,10 +82,11 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                     GestureDetector(
                       onTap: () async {
                         dateTime = await showDatePicker(
-                            context: context,
-                            firstDate: DateTime(2024),
-                            lastDate: DateTime(2040),
-                            initialDate: DateTime.now());
+                                context: context,
+                                firstDate: DateTime(2024),
+                                lastDate: DateTime(2040),
+                                initialDate: DateTime.now()) ??
+                            DateTime.now();
                       },
                       child: SvgPicture.asset(
                         'assets/images/Icon (1).svg',
@@ -92,7 +107,14 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                   setState(() {});
                 },
               ),
-              DoneButton()
+              Text('${timeOfDay!.hour}'),
+              Text('${timeOfDay!.minute}'),
+              DoneButton(
+                dateTime: DateTime(dateTime.year, dateTime.month, dateTime.day,
+                    timeOfDay!.hour, timeOfDay!.minute),
+                description: description,
+                title: title,
+              )
             ],
           ),
         ),
@@ -104,12 +126,40 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
 class DoneButton extends StatelessWidget {
   const DoneButton({
     super.key,
+    required this.title,
+    required this.description,
+    required this.dateTime,
   });
+  final TextEditingController title;
+  final TextEditingController description;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () async {
+        var id = Uuid().v4(); // Generate a unique taskId
+        var task = TaskModel(
+          taskId: id.hashCode, // Use the UUID directly as taskId
+          title: title.text,
+          dateTime: dateTime,
+          description: description.text,
+        );
+
+        SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        List<String> tasks = sharedPreferences.getStringList('tasks') ?? [];
+
+// Add the task to the list (convert it to a JSON string)
+        tasks.add(jsonEncode(task.toMap()));
+
+// Save the updated list to SharedPreferences
+        await sharedPreferences.setStringList('tasks', tasks);
+        print(tasks);
+
+// Register the task with WorkManager (assuming WorkManagerServices is implemented correctly)
+        await WorkManagerServices.registerMyTask(task);
+      },
       child: Container(
         height: 48,
         width: MediaQuery.sizeOf(context).width,

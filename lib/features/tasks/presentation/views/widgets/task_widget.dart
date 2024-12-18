@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasks_app/features/tasks/data/models/task_model.dart';
 
 class TaskWidget extends StatelessWidget {
-  const TaskWidget({super.key});
-
+  const TaskWidget({super.key, required this.taskModel});
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +32,7 @@ class TaskWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Flutter Session',
+                      taskModel.title,
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                     ),
@@ -45,7 +46,7 @@ class TaskWidget extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  'Reminds',
+                  taskModel.description ?? '',
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -60,7 +61,8 @@ class TaskWidget extends StatelessWidget {
                     SizedBox(
                       width: 4,
                     ),
-                    Text('2024-11-23',
+                    Text(
+                        "${taskModel.dateTime.year}-${taskModel.dateTime.month}-${taskModel.dateTime.day}",
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -72,7 +74,8 @@ class TaskWidget extends StatelessWidget {
                     SizedBox(
                       width: 4,
                     ),
-                    Text('2024-11-23',
+                    Text(
+                        '${taskModel.dateTime.hour}:${taskModel.dateTime.minute}',
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,

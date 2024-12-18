@@ -15,6 +15,8 @@ Future<void> main() async {
   runApp(const TasksAppp());
 }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
 class TasksAppp extends StatelessWidget {
   const TasksAppp({super.key});
 
@@ -22,6 +24,7 @@ class TasksAppp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -145,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await WorkManagerServices.registerMyTask();
+          // await WorkManagerServices.registerMyTask();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
