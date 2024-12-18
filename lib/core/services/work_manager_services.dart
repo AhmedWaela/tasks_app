@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_string_interpolations
 
-import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/features/tasks/data/models/task_model.dart';
 import 'package:uuid/uuid.dart';
@@ -13,7 +12,7 @@ class WorkManagerServices {
 
   static Future<void> registerMyTask() async {
     var id = Uuid().v4();
-    var dateTime = DateTime(2024, 12, 18, 17, 42);
+    var dateTime = DateTime(2024, 12, 18, 17, 45);
     TaskModel taskModel = TaskModel(
         taskId: id.hashCode,
         title: 'Hello',
