@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 
