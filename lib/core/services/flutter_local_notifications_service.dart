@@ -32,11 +32,11 @@ class FlutterLocalNotificationsService {
     var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
-        'Basic Notification Channel Id',
-        'Basic Notification Channel Id',
-        priority: Priority.high,
-        importance: Importance.max,
-      ),
+          'Basic Notification Channel Id', 'Basic Notification Channel Id',
+          priority: Priority.high,
+          importance: Importance.max,
+          sound: RawResourceAndroidNotificationSound(
+              'sound.mp3'.split('.').first)),
       iOS: DarwinNotificationDetails(),
     );
     await flutterLocalNotificationsPlugin.show(
@@ -50,12 +50,12 @@ class FlutterLocalNotificationsService {
   static Future<void> showRepeatedNotification() async {
     var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
-      android: AndroidNotificationDetails(
-        'Repeated Notification Channel Id',
-        'Repeated Notification Channel Id',
-        priority: Priority.high,
-        importance: Importance.max,
-      ),
+      android: AndroidNotificationDetails('Repeated Notification Channel Id',
+          'Repeated Notification Channel Id',
+          priority: Priority.high,
+          importance: Importance.max,
+          sound: RawResourceAndroidNotificationSound(
+              'sound.mp3'.split('.').first)),
       iOS: DarwinNotificationDetails(),
     );
     await flutterLocalNotificationsPlugin.periodicallyShow(
@@ -79,12 +79,12 @@ class FlutterLocalNotificationsService {
   static Future<void> showScheduleNotification() async {
     var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
-      android: AndroidNotificationDetails(
-        'Schedule Notification Channel Id',
-        'Schedule Notification Channel Id',
-        priority: Priority.high,
-        importance: Importance.max,
-      ),
+      android: AndroidNotificationDetails('Schedule Notification Channel Id',
+          'Schedule Notification Channel Id',
+          priority: Priority.high,
+          importance: Importance.max,
+          sound: RawResourceAndroidNotificationSound(
+              'sound.mp3'.split('.').first)),
       iOS: DarwinNotificationDetails(),
     );
     String realLocation = await tz.FlutterTimezone.getLocalTimezone();
