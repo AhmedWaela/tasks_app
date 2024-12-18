@@ -2,7 +2,6 @@
 
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/features/tasks/data/models/task_model.dart';
-import 'package:uuid/uuid.dart';
 import 'package:workmanager/workmanager.dart';
 
 class WorkManagerServices {
@@ -10,21 +9,16 @@ class WorkManagerServices {
     await Workmanager().initialize(callbackDispatcher);
   }
 
-  static Future<void> registerMyTask() async {
-    var id = Uuid().v4();
-    var dateTime = DateTime(2024, 12, 18, 18, 06);
-    var now = DateTime.now();
-    TaskModel taskModel = TaskModel(
-        taskId: id.hashCode,
-        title: 'Hello',
-        dateTime: dateTime,
-        description: 'Hi');
-    var task = taskModel.toMap();
+  static Future<void> registerMyTask(TaskModel task) async {
+    if (task.dateTime.isBefore(DateTime.now())) {
+      print('hhhhhh');
+      return;
+    }
     await Workmanager().registerOneOffTask(
-      '$id',
-      taskModel.title,
-      inputData: task,
-      initialDelay: dateTime.difference(now),
+      '${task.taskId}',
+      task.title,
+      inputData: task.toMap(),
+      initialDelay: task.dateTime.difference(DateTime.now()),
     );
   }
 }
