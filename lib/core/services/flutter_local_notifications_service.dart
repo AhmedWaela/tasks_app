@@ -90,13 +90,14 @@ class FlutterLocalNotificationsService {
     String realLocation = await tz.FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(realLocation));
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        notificationId.hashCode,
-        'Schedule Notification Title',
-        'Schedule Notification Body',
-        tz.TZDateTime(tz.local, 2024),
-        notificationDetails,
-        androidScheduleMode: AndroidScheduleMode.exact,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+      notificationId.hashCode,
+      'Schedule Notification Title',
+      'Schedule Notification Body',
+      tz.TZDateTime(tz.local, 2024),
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exact,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 }
