@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/core/services/work_manager_services.dart';
+import 'package:workmanager/workmanager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -138,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await FlutterLocalNotificationsService.showScheduleNotification();
+          await WorkManagerServices.registerMyTask();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

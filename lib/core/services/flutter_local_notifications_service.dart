@@ -84,7 +84,8 @@ class FlutterLocalNotificationsService {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 
-  static Future<void> showScheduleNotification() async {
+  static Future<void> showScheduleNotification(
+      int id, String title, String description, DateTime scheduledTime) async {
     var notificationId = Uuid().v4();
     NotificationDetails notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
@@ -104,15 +105,11 @@ class FlutterLocalNotificationsService {
       String realLocation = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(realLocation));
 
-      // Define a valid future date and time for scheduling
-      tz.TZDateTime scheduledTime =
-          tz.TZDateTime.now(tz.local).add(Duration(seconds: 10));
-
       await flutterLocalNotificationsPlugin.zonedSchedule(
-        notificationId.hashCode,
-        'Schedule Notification Title',
-        'Schedule Notification Body',
-        scheduledTime,
+        id,
+        title,
+        description,
+        tz.TZDateTime.from(scheduledTime, tz.local),
         notificationDetails,
         androidScheduleMode: AndroidScheduleMode.exact,
         uiLocalNotificationDateInterpretation:
