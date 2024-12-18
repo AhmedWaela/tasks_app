@@ -12,6 +12,7 @@ class AddReminderViewBody extends StatefulWidget {
 
 class _AddReminderViewBodyState extends State<AddReminderViewBody> {
   TimeOfDay timeOfDay = TimeOfDay.now();
+  DateTime? dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,9 +65,18 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                       ],
                     ),
                     const Spacer(),
-                    SvgPicture.asset(
-                      'assets/images/Icon (1).svg',
-                      height: 30,
+                    GestureDetector(
+                      onTap: () async {
+                        dateTime = await showDatePicker(
+                            context: context,
+                            firstDate: DateTime(2024),
+                            lastDate: DateTime(2040),
+                            initialDate: DateTime.now());
+                      },
+                      child: SvgPicture.asset(
+                        'assets/images/Icon (1).svg',
+                        height: 30,
+                      ),
                     ),
                   ],
                 ),
@@ -81,7 +91,7 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                   timeOfDay = time;
                   setState(() {});
                 },
-              )
+              ),
             ],
           ),
         ),
