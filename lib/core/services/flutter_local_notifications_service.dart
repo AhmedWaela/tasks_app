@@ -11,12 +11,17 @@ class FlutterLocalNotificationsService {
       android: AndroidInitializationSettings("@mipmap/ic_launcher"),
       iOS: DarwinInitializationSettings(),
     );
-    bool? initaliztionResult = await flutterLocalNotificationsPlugin
-        .initialize(initializationSettings);
+    bool? initaliztionResult = await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveBackgroundNotificationResponse: onDid,
+      onDidReceiveNotificationResponse: onDid,
+    );
     if (initaliztionResult != null && initaliztionResult == true) {
       debugPrint('Initialization Success');
     } else {
       debugPrint('Initialization Failed');
     }
   }
+
+  static void onDid(details) {}
 }
