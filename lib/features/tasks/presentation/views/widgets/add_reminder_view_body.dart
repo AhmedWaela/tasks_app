@@ -92,8 +92,31 @@ class _AddReminderViewBodyState extends State<AddReminderViewBody> {
                   setState(() {});
                 },
               ),
+              DoneButton()
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DoneButton extends StatelessWidget {
+  const DoneButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 48,
+        width: MediaQuery.sizeOf(context).width,
+        decoration: BoxDecoration(
+            color: Colors.green, borderRadius: BorderRadius.circular(5)),
+        child: Center(
+          child: Text('Done'),
         ),
       ),
     );
