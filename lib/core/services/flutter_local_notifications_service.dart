@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:uuid/uuid.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class FlutterLocalNotificationsService {
   // create object from flutter local notification plugin
@@ -72,5 +74,27 @@ class FlutterLocalNotificationsService {
 
   static Future<void> cancelAllNotification() async {
     await flutterLocalNotificationsPlugin.cancelAll();
+  }
+
+  static Future<void> showScheduleNotification() async {
+    var notificationId = Uuid().v4();
+    NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'Schedule Notification Channel Id',
+        'Schedule Notification Channel Id',
+        priority: Priority.high,
+        importance: Importance.max,
+      ),
+      iOS: DarwinNotificationDetails(),
+    );
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        notificationId.hashCode,
+        'Schedule Notification Title',
+        'Schedule Notification Body',
+        tz.TZDateTime(tz.local, 2024),
+        notificationDetails,
+        androidScheduleMode: AndroidScheduleMode.exact,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime);
   }
 }
