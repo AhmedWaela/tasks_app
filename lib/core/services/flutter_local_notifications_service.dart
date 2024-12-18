@@ -25,5 +25,9 @@ class FlutterLocalNotificationsService {
 
   static void onDid(details) {}
 
-  static Future<void> showBasicNotification() async {}
+  static Future<void> showBasicNotification() async {
+    NotificationDetails notificationDetails = NotificationDetails();
+    await flutterLocalNotificationsPlugin.show(0, 'Basic Notification Title',
+        'Basic Notification Body', notificationDetails);
+  }
 }
