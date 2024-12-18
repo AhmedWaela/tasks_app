@@ -1,3 +1,4 @@
+import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:workmanager/workmanager.dart';
 
 class WorkManagerServices {
@@ -10,4 +11,11 @@ class WorkManagerServices {
   }
 }
 
-void callbackDispatcher() {}
+void callbackDispatcher() {
+  Workmanager().executeTask(
+    (taskName, inputData) async {
+      await FlutterLocalNotificationsService.showScheduleNotification();
+      return Future.value(true);
+    },
+  );
+}
