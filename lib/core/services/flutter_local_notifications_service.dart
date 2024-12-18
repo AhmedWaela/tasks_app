@@ -27,11 +27,12 @@ class FlutterLocalNotificationsService {
 
   static Future<void> showBasicNotification() async {
     NotificationDetails notificationDetails = NotificationDetails(
-        android: AndroidNotificationDetails(
-          'Basic Notification Channel Id',
-          'Basic Notification Channel Id',
-        ),
-        iOS: DarwinNotificationDetails());
+      android: AndroidNotificationDetails(
+        'Basic Notification Channel Id',
+        'Basic Notification Channel Id',
+      ),
+      iOS: DarwinNotificationDetails(),
+    );
     await flutterLocalNotificationsPlugin.show(0, 'Basic Notification Title',
         'Basic Notification Body', notificationDetails);
   }
