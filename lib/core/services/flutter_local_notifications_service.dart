@@ -30,6 +30,8 @@ class FlutterLocalNotificationsService {
       android: AndroidNotificationDetails(
         'Basic Notification Channel Id',
         'Basic Notification Channel Id',
+        priority: Priority.high,
+        importance: Importance.max,
       ),
       iOS: DarwinNotificationDetails(),
     );
