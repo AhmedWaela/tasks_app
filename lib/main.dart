@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await FlutterLocalNotificationsService.showBasicNotification();
+          await FlutterLocalNotificationsService.showScheduleNotification();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
