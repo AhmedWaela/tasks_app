@@ -66,5 +66,7 @@ class FlutterLocalNotificationsService {
     );
   }
 
-  static Future<void> cancelNotification() async {}
+  static Future<void> cancelNotification(int notificationId) async {
+    await flutterLocalNotificationsPlugin.cancel(notificationId);
+  }
 }
