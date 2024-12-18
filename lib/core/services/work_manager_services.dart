@@ -12,10 +12,8 @@ class WorkManagerServices {
 
   static Future<void> registerMyTask() async {
     var id = Uuid().v4();
-    var dateTime = DateTime(2024, 12, 18, 17, 56);
+    var dateTime = DateTime(2024, 12, 18, 18, 06);
     var now = DateTime.now();
-    var initialDelay =
-        dateTime.isAfter(now) ? dateTime.difference(now) : Duration.zero;
     TaskModel taskModel = TaskModel(
         taskId: id.hashCode,
         title: 'Hello',
@@ -26,7 +24,7 @@ class WorkManagerServices {
       '$id',
       taskModel.title,
       inputData: task,
-      initialDelay: initialDelay,
+      initialDelay: dateTime.difference(now),
     );
   }
 }

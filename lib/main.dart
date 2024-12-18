@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/core/services/work_manager_services.dart';
+import 'package:tasks_app/features/tasks/presentation/views/reminder_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,11 +11,11 @@ Future<void> main() async {
     FlutterLocalNotificationsService.initialize(),
     WorkManagerServices.initialize()
   ]);
-  runApp(const MyApp());
+  runApp(const TasksAppp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TasksAppp extends StatelessWidget {
+  const TasksAppp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ReminderView(),
     );
   }
 }
