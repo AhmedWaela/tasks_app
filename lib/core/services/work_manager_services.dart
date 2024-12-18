@@ -6,8 +6,13 @@ class WorkManagerServices {
     await Workmanager().initialize(callbackDispatcher);
   }
 
-  static Future<void> registerMyTask() async {
-    await Workmanager().registerOneOffTask('id1', 'task1');
+  static Future<void> registerMyTask(int taskId, String taskName) async {
+    await Workmanager().registerOneOffTask(
+      '$taskId',
+      taskName,
+      inputData: {},
+      initialDelay: Duration.zero,
+    );
   }
 }
 

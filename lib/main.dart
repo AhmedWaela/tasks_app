@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
+import 'package:tasks_app/core/services/work_manager_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterLocalNotificationsService.initialize();
+  await Future.wait([
+    FlutterLocalNotificationsService.initialize(),
+    WorkManagerServices.initialize()
+  ]);
   runApp(const MyApp());
 }
 
