@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/core/services/flutter_local_notifications_service.dart';
 import 'package:tasks_app/core/services/work_manager_services.dart';
+import 'package:tasks_app/features/tasks/presentation/views/add_reminder_view.dart';
 import 'package:tasks_app/features/tasks/presentation/views/reminder_view.dart';
 
 Future<void> main() async {
@@ -41,7 +42,11 @@ class TasksAppp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ReminderView(),
+      initialRoute: ReminderView.route,
+      routes: {
+        ReminderView.route: (c) => const ReminderView(),
+        AddReminderView.route: (c) => const AddReminderView()
+      },
     );
   }
 }
