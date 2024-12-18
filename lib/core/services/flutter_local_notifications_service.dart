@@ -35,7 +35,11 @@ class FlutterLocalNotificationsService {
       ),
       iOS: DarwinNotificationDetails(),
     );
-    await flutterLocalNotificationsPlugin.show(0, 'Basic Notification Title',
-        'Basic Notification Body', notificationDetails);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Basic Notification Title',
+      'Basic Notification Body',
+      notificationDetails,
+    );
   }
 }
