@@ -8,7 +8,7 @@ class ReminderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      floatingActionButton: ReminderFloatingActionButton(),
+      // floatingActionButton: ReminderFloatingActionButton(),
       backgroundColor: Color(0xffF6FFF9),
       body: ReminderViewBody(),
     );

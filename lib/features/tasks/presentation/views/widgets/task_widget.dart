@@ -97,6 +97,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasks_app/core/assets/app_assets.dart';
+import 'package:tasks_app/core/styles/app_styles.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({super.key});
@@ -136,59 +138,58 @@ class TaskWidget extends StatelessWidget {
                   const SizedBox(
                     width: 9,
                   ),
-                  SvgPicture.asset('assets/images/Bell.svg')
+                  SvgPicture.asset(AppAssets.bellSvgPath)
                 ],
               ),
               const SizedBox(
                 height: 16,
               ),
-              const Text('Reminds'),
+              const Text(
+                'Reminder',
+                style: AppStyles.textStyle12W400Grey,
+              ),
               const SizedBox(
                 height: 15,
               ),
               Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/images/Icon (1).svg',
-                    height: 12,
-                    width: 13.33,
+                    AppAssets.dateSvgPath,
+                    height: 16,
+                    width: 16,
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   const Text(
                     '2024-12-12',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0XFF717171),
-                    ),
+                    style: AppStyles.textStyle12W400Grey,
                   ),
                   const SizedBox(
                     width: 17,
                   ),
                   SvgPicture.asset(
-                    'assets/images/Time Circle.svg',
-                    height: 12,
-                    width: 12,
+                    AppAssets.timeCircleSvgPath,
+                    height: 16,
+                    width: 16,
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   const Text(
                     '2024-12-12',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0XFF717171),
-                    ),
+                    style: AppStyles.textStyle12W400Grey,
                   )
                 ],
               ),
             ],
           ),
           Spacer(),
-          SvgPicture.asset('assets/images/Pen.svg'),
+          SvgPicture.asset(
+            AppAssets.penSvgPath,
+            height: 16,
+            width: 16,
+          ),
         ],
       ),
     );

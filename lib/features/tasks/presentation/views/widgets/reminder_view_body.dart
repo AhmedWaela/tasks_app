@@ -34,11 +34,14 @@ class _ReminderViewBodyState extends State<ReminderViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        return TaskWidget(taskModel: tasks[index]);
-      },
+    // return ListView.builder(
+    //   itemCount: tasks.length,
+    //   itemBuilder: (context, index) {
+    //     return TaskWidget();
+    //   },
+    // );
+    return SafeArea(
+      child: TaskWidget(),
     );
   }
 }
